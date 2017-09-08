@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ using namespace std;
 
 int main() {
 	setlocale(0, "rus");
-	system("Color F0");
+	//system("Color F0");
 	//ofstream outfile;
 	//outfile.open("db.txt");
 	//Sorter Sorter_1("db.txt");

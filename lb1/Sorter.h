@@ -36,7 +36,8 @@ Sorter::Sorter(int N, int *id, char **Name, char **PublishingHouse) {
 	//_Book = (Book*)malloc(sizeof(Book)*N);
 	for (int i = 0; i < N; i++) {
 		_Book.push_back(Book(id[i], Name[i], PublishingHouse[i]));
-		printing(_Book[i].GetName());
+		//printing(_Book[i].GetName());
+		_Book[i].PrintBookInfo();
 	}
 }
 

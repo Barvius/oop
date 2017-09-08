@@ -2,17 +2,17 @@
 
 class Rack{
 private:
-	vector <int> _NumberRack;
+	int _NumberRack;
 	vector <int> _IdsBooks;
-	vector <int> _Size;
+	int _Size;
 public:
 	Rack(int,int);
 	void AddBook(int);
 };
 
 Rack::Rack(int n, int number) {
-	_Size.push_back(n);
-	_NumberRack.push_back(number);
+	_Size = n;
+	_NumberRack = number;
 }
 
 void Rack::AddBook(int id) {
