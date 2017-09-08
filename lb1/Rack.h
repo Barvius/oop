@@ -8,6 +8,8 @@ private:
 public:
 	Rack(int,int);
 	void AddBook(int);
+	int GetNumberRack();
+	vector <int> GetAllBookById();
 };
 
 Rack::Rack(int n, int number) {
@@ -17,6 +19,14 @@ Rack::Rack(int n, int number) {
 
 void Rack::AddBook(int id) {
 	_IdsBooks.push_back(id);
-	cout << "размер полки: " << sizeof(_IdsBooks.size()) << endl;
-	printing(_IdsBooks);
+	//cout << "размер полки: " << sizeof(_IdsBooks.size()) << endl;
+	//printing(_IdsBooks);
+}
+
+int Rack::GetNumberRack() {
+	return _NumberRack;
+}
+
+vector <int> Rack::GetAllBookById() {
+	return _IdsBooks;
 }

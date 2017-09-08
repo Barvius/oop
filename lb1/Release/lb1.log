@@ -1,3 +1,0 @@
-﻿  stdafx.cpp
-  lb1.cpp
-d:\vs\lb1\lb1\Book.h(29): error C2065: cout: необъявленный идентификатор

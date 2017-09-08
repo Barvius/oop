@@ -31,7 +31,7 @@ int Book::GetID() {
 void Book::PrintBookInfo() {
 	cout << "#####################" << endl;
 	cout << "id" << setw(11) << ":" << _id << endl;
-	cout << "Название" << setw(5) << ":"; //<< _Name.data() << endl;
+	cout << "Название" << setw(5) << ":";
 	for (auto i = _Name.begin(); i != _Name.end(); ++i) {
 		cout << *i << ' ';
 	}
