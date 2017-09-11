@@ -20,8 +20,26 @@ int main() {
 	int id[] = { 107,323,122,558,696,666 };
 	char *Name[] = { "Хильда и каменный лес","Придумай и нарисуй свой комикс","Каждому своё","Пропавший","Неудержимая. Моя жизнь","Магия крови" };
 	char *PublishingHouse[] = { "МИФ","МИФ","АСТ","АСТ","ЭКСМО","ЭКСМО" };
-	
+
 	Sorter Sort(N, id, Name, PublishingHouse);
+	while (true) {
+		system("cls");
+		cout << "1 - Показать книги на всех полках" << endl;
+		cout << "2 - Поиск поназванию книги" << endl;
+		switch (cin.get()) {
+		case '1':
+			Sort.GetAllBooksInRack();
+			system("pause");
+			break;
+		case '2':
+			Sort.GetBookByName("Хильда и каменный лес");
+			system("pause");
+			break;
+		default:
+			break;
+		}
+
+	}
 	//Rack polka(6,2);
 	//polka.AddBook(2);
 	//polka.AddBook(5);

@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 class Rack{
 private:
@@ -19,8 +19,6 @@ Rack::Rack(int n, int number) {
 
 void Rack::AddBook(int id) {
 	_IdsBooks.push_back(id);
-	//cout << "размер полки: " << sizeof(_IdsBooks.size()) << endl;
-	//printing(_IdsBooks);
 }
 
 int Rack::GetNumberRack() {

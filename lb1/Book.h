@@ -1,27 +1,35 @@
-#pragma once
+ï»¿#pragma once
 
 class Book{
 private:
 	int _id;
-	vector <string> _Name;
-	vector <string> _PublishingHouse;
+	vector <char> _Name;
+	vector <char> _PublishingHouse;
 	
 public:
 	int GetID();
-	vector <string> GetName();
-	vector <string> GetPublishingHouse();
+	char* GetName();
+	char* GetPublishingHouse();
 	void PrintBookInfo();
 	Book();
 	Book(int,char*,char*);
 	~Book();
 };
 
-vector <string> Book::GetName() {
-	return _Name;
+char* Book::GetName() {
+	char *str = new char [_Name.size() +1];
+	copy(_Name.begin(), _Name.end(), str);
+	str[_Name.size()] = '\0';
+	return str;
+	delete[] str;
 }
 
-vector <string> Book::GetPublishingHouse() {
-	return _PublishingHouse;
+char* Book::GetPublishingHouse() {
+	char *str = new char[_PublishingHouse.size() + 1];
+	copy(_PublishingHouse.begin(), _PublishingHouse.end(), str);
+	str[_PublishingHouse.size()] = '\0';
+	return str;
+	delete[] str;
 }
 
 int Book::GetID() {
@@ -31,36 +39,36 @@ int Book::GetID() {
 void Book::PrintBookInfo() {
 	cout << "#####################" << endl;
 	cout << "id" << setw(11) << ":" << _id << endl;
-	cout << "Íàçâàíèå" << setw(5) << ":";
-	for (auto i = _Name.begin(); i != _Name.end(); ++i) {
-		cout << *i << ' ';
+	cout << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ" << setw(5) << ":";
+	for (int i = 0; i < _Name.size(); i++) {
+		cout << _Name[i];
 	}
 	cout << endl;
-	cout << "Èçäàòåëüñòâî" << setw(1) << ":";
-	for (auto i = _PublishingHouse.begin(); i != _PublishingHouse.end(); ++i) {
-		cout << *i << ' ';
+	cout << "Ð˜Ð·Ð´Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾" << setw(1) << ":";
+	for (int i = 0; i < _PublishingHouse.size(); i++) {
+		cout << _PublishingHouse[i];
 	}
 	cout << endl << "#####################" << endl;
 }
 
 Book::Book() {
 	char Tmp[100];
-	//cout << "Êîíñòðóêòîð êëàññà áåç ïàðàìåòðîâ" << endl;
-	cout << "Íîìåð êíèãè:";
+	//cout << "ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ»Ð°ÑÑÐ° Ð±ÐµÐ· Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²" << endl;
+	cout << "ÐÐ¾Ð¼ÐµÑ€ ÐºÐ½Ð¸Ð³Ð¸:";
 	cin >> _id;
-	cout << "Íàçâàíèå êíèãè:";
+	cout << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ½Ð¸Ð³Ð¸:";
 	cin >> Tmp;
-	_Name.push_back(Tmp);
-	cout << "Èçäàòåëüñòâî:";
+	/////_Name.push_back(Tmp);
+	cout << "Ð˜Ð·Ð´Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾:";
 	cin >> Tmp;
-	_PublishingHouse.push_back(Tmp);
+	///_PublishingHouse.push_back(Tmp);
 }
 
 Book::Book(int id_p, char *Name_p, char *PublishingHouse_p) {
-	//cout << "Êîíñòðóêòîð êëàññà ñ ïàðàìåòðàìè" << endl;
+	//cout << "ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ»Ð°ÑÑÐ° Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸" << endl;
 	_id = id_p;
-	_Name.push_back(Name_p);
-	_PublishingHouse.push_back(PublishingHouse_p);
+	_Name.insert(_Name.end(), Name_p, Name_p+strlen(Name_p));
+	_PublishingHouse.insert(_PublishingHouse.end(),PublishingHouse_p,PublishingHouse_p+strlen(PublishingHouse_p));
 }
 
 Book::~Book() {
