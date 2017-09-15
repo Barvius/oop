@@ -1,4 +1,4 @@
-п»ї#pragma once
+#pragma once
 
 #include <vector>
 #include <string>
@@ -10,16 +10,16 @@
 
 class Sorter {
 private:
-	vector <Book> _Books;
-	vector <Rack> _Racks;
+	Rack *_Racks;
 public:
 	void GetAllBooksInRack();
 	void GetBookByName(char*);
-	Sorter(int,int*,char**,char**);
+	Sorter(int,int,int*,char**,char**,char**);
 	~Sorter();
 };
 
 void Sorter::GetBookByName(char *Name) {
+	/*
 	int id;
 	for (int i = 0; i < _Books.size(); i++) {
 		if (!strcmp(_Books[i].GetName(),Name)) {
@@ -28,7 +28,7 @@ void Sorter::GetBookByName(char *Name) {
 				vector <int> ids = _Racks[j].GetAllBookById();
 				for (int k = 0; k < ids.size();k++) {
 					if (ids[k] == id) {
-						cout << "РєРЅРёРіР° РЅР° РїРѕР»РєРµ в„– " << _Racks[j].GetNumberRack() << endl;
+						cout << "книга на полке № " << _Racks[j].GetNumberRack() << endl;
 						_Books[i].PrintBookInfo();
 					}
 				}
@@ -36,12 +36,14 @@ void Sorter::GetBookByName(char *Name) {
 		}
 		
 	}
+	*/
 }
 
 void Sorter::GetAllBooksInRack() {
+	/*
 	for (int j = 0; j < _Racks.size(); j++) {
 		vector <int> ids = _Racks[j].GetAllBookById();
-		cout << "| РЅР° РїРѕР»РєРµ " << j + 1 << " -- " << ids.size() << " РєРЅРёРі |" << endl;
+		cout << "| на полке " << j + 1 << " -- " << ids.size() << " книг |" << endl;
 		for (auto r = ids.begin(); r != ids.end(); r++) {
 			for (int b = 0; b < _Books.size(); b++) {
 				if (_Books[b].GetID() == *r) {
@@ -51,27 +53,32 @@ void Sorter::GetAllBooksInRack() {
 
 		}
 	}
+	*///
+	//for (int j = 0; j < _Books.size(); j++) {
+	//	_Books[j].PrintBookInfo();
+	//}
 }
 
-Sorter::Sorter(int N, int *id, char **Name, char **PublishingHouse) {
-	for (int i = 0; i < N; i++){
-		_Racks.push_back(Rack(10,i+1));
+Sorter::Sorter(int RackNum, int BookNum, int *id, char **Name, char **Author, char **PublishingHouse) {
+	_Racks = new Rack[RackNum];
+	for (int i = 0; i < RackNum; i++) {
+		_Racks[i] = Rack(10, i + 1);
 	}
-	char tmp[10], num[1];
-	for (int i = 0; i < N; i++) {
-		_Books.push_back(Book(id[i], Name[i], PublishingHouse[i]));
-		sprintf(tmp, "%d",id[i]);
-		memcpy(num,tmp,1);
-		for (int j = 0; j < N; j++){
-			if (_Racks[j].GetNumberRack() == atoi(num)) {
-				_Racks[j].AddBook(id[i]);
+	for (int i = 0; i < BookNum; i++) {
+		for (size_t r = 0; r < RackNum; r++) {
+			if (_Racks[r].GetNumberRack() == id[i] / 100) {
+				_Racks[r].AddBook(Book(id[i], Name[i], Author[i], PublishingHouse[i]));
 			}
 		}
+	}
+	for (int i = 0; i < RackNum; i++) {
+		cout << "список книг на полке " << i+1 << endl;
+		_Racks[i].GetBooksInRack();
 	}
 	
 }
 
 Sorter::~Sorter() {
-	_Books.clear();
-	_Racks.clear();
+	cout << "sorter destr" << endl;
+	delete[] _Racks;
 }

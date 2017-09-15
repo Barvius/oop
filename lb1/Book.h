@@ -1,77 +1,139 @@
-ï»¿#pragma once
+#pragma once
 
 class Book{
 private:
 	int _id;
-	vector <char> _Name;
-	vector <char> _PublishingHouse;
-	
+	char* _Name = NULL;
+	char* _Author = NULL;
+	char* _PublishingHouse = NULL;
+	void MemoryAlloc(char *&,int);
+	void MemoryClear(char *&);
 public:
 	int GetID();
+	void SetID(int);
 	char* GetName();
+	void SetName(char*);
+	char* GetAuthor();
+	void SetAuthor(char*);
 	char* GetPublishingHouse();
+	void SetPublishingHouse(char*);
 	void PrintBookInfo();
 	Book();
-	Book(int,char*,char*);
+	Book(Book&);
+	Book(int,char*,char*,char*);
+	Book &operator = (Book &obj);
 	~Book();
 };
 
-char* Book::GetName() {
-	char *str = new char [_Name.size() +1];
-	copy(_Name.begin(), _Name.end(), str);
-	str[_Name.size()] = '\0';
-	return str;
-	delete[] str;
+void Book::MemoryClear(char *&arr) {
+	if (arr != nullptr) {
+			delete[] arr;
+	}
 }
 
-char* Book::GetPublishingHouse() {
-	char *str = new char[_PublishingHouse.size() + 1];
-	copy(_PublishingHouse.begin(), _PublishingHouse.end(), str);
-	str[_PublishingHouse.size()] = '\0';
-	return str;
-	delete[] str;
+void Book::MemoryAlloc(char *&arr,int size) {
+	if (arr != nullptr) {
+			delete[] arr;
+	} 
+	arr = new char[size];
 }
 
 int Book::GetID() {
 	return _id;
 }
 
+void Book::SetID(int num) {
+	_id = num;
+}
+
+char* Book::GetName() {
+	return _Name;
+}
+
+void Book::SetName(char* str) {
+	MemoryAlloc(_Name,strlen(str)+1);
+	strcpy(_Name, str);
+}
+
+char* Book::GetAuthor() {
+	return _Author;
+}
+
+void Book::SetAuthor(char* str) {
+	MemoryAlloc(_Author, strlen(str) + 1);
+	strcpy(_Author, str);
+}
+
+char* Book::GetPublishingHouse() {
+	return _PublishingHouse;
+}
+
+void Book::SetPublishingHouse(char* str) {
+	MemoryAlloc(_PublishingHouse, strlen(str) + 1);
+	strcpy(_PublishingHouse, str);
+}
+
 void Book::PrintBookInfo() {
-	cout << "#####################" << endl;
 	cout << "id" << setw(11) << ":" << _id << endl;
-	cout << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ" << setw(5) << ":";
-	for (int i = 0; i < _Name.size(); i++) {
-		cout << _Name[i];
-	}
-	cout << endl;
-	cout << "Ð˜Ð·Ð´Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾" << setw(1) << ":";
-	for (int i = 0; i < _PublishingHouse.size(); i++) {
-		cout << _PublishingHouse[i];
-	}
-	cout << endl << "#####################" << endl;
+	cout << "Íàçâàíèå" << setw(5) << ":";
+	cout << _Name << endl;
+	cout << "Àâòîð" << setw(8) << ":";
+	cout << _Author << endl;
+	cout << "Èçäàòåëüñòâî" << setw(1) << ":";
+	cout << _PublishingHouse << endl;
 }
 
 Book::Book() {
+	//this->MemoryAlloc(_Name, 1);
+	//this->MemoryAlloc(_PublishingHouse, 1);
+	//_Name = '\0';
+	//_PublishingHouse = '\0';
+	/*
 	char Tmp[100];
-	//cout << "ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ»Ð°ÑÑÐ° Ð±ÐµÐ· Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²" << endl;
-	cout << "ÐÐ¾Ð¼ÐµÑ€ ÐºÐ½Ð¸Ð³Ð¸:";
+	//cout << "Êîíñòðóêòîð êëàññà áåç ïàðàìåòðîâ" << endl;
+	cout << "Íîìåð êíèãè:";
 	cin >> _id;
-	cout << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ½Ð¸Ð³Ð¸:";
+	cout << "Íàçâàíèå êíèãè:";
 	cin >> Tmp;
 	/////_Name.push_back(Tmp);
-	cout << "Ð˜Ð·Ð´Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾:";
+	cout << "Èçäàòåëüñòâî:";
 	cin >> Tmp;
 	///_PublishingHouse.push_back(Tmp);
+	*/
 }
 
-Book::Book(int id_p, char *Name_p, char *PublishingHouse_p) {
-	//cout << "ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ»Ð°ÑÑÐ° Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸" << endl;
+Book::Book(int id_p, char *Name_p, char* Author_p, char *PublishingHouse_p) {
+	this->MemoryAlloc(_Name, strlen(Name_p) + 1);
+	this->MemoryAlloc(_Author, strlen(Author_p) + 1);
+	this->MemoryAlloc(_PublishingHouse, strlen(PublishingHouse_p) + 1);
 	_id = id_p;
-	_Name.insert(_Name.end(), Name_p, Name_p+strlen(Name_p));
-	_PublishingHouse.insert(_PublishingHouse.end(),PublishingHouse_p,PublishingHouse_p+strlen(PublishingHouse_p));
+	strcpy(_Name, Name_p);
+	strcpy(_Author, Author_p);
+	strcpy(_PublishingHouse, PublishingHouse_p);
+}
+
+Book::Book(Book &obj) {
+	this->MemoryAlloc(_Name, strlen(obj._Name) + 1);
+	this->MemoryAlloc(_Author, strlen(obj._Author) + 1);
+	this->MemoryAlloc(_PublishingHouse, strlen(obj._PublishingHouse) + 1);
+	_id = obj._id;
+	strcpy(_Name, obj._Name);
+	strcpy(_Author, obj._Author);
+	strcpy(_PublishingHouse, obj._PublishingHouse);
+}
+
+Book &Book::operator = (Book &obj) {
+	this->MemoryAlloc(_Name, strlen(obj._Name) + 1);
+	this->MemoryAlloc(_Author, strlen(obj._Author) + 1);
+	this->MemoryAlloc(_PublishingHouse, strlen(obj._PublishingHouse) + 1);
+	_id = obj._id;
+	strcpy(_Name, obj._Name);
+	strcpy(_Author, obj._Author);
+	strcpy(_PublishingHouse, obj._PublishingHouse);
+	return Book(*this);
 }
 
 Book::~Book() {
-	_Name.clear();
-	_PublishingHouse.clear();
+	this->MemoryClear(_Name);
+	this->MemoryClear(_PublishingHouse);
 }

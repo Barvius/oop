@@ -19,9 +19,23 @@ int main() {
 	int N = 6;
 	int id[] = { 107,323,122,558,696,666 };
 	char *Name[] = { "Хильда и каменный лес","Придумай и нарисуй свой комикс","Каждому своё","Пропавший","Неудержимая. Моя жизнь","Магия крови" };
+	char *Author[] = {"Люк Пирсон","Луи Стоуэлл","Сергей Тармашев","Мэри Торджуссен ","Мария Шарапова","Лине Кобербёль"};
 	char *PublishingHouse[] = { "МИФ","МИФ","АСТ","АСТ","ЭКСМО","ЭКСМО" };
 
-	Sorter Sort(N, id, Name, PublishingHouse);
+	Sorter Sort(N, 6, id, Name,Author, PublishingHouse);
+	/*
+	Book a(id[0], Name[0], PublishingHouse[0]);
+	Book b(id[1], Name[1], PublishingHouse[1]);
+	a.PrintBookInfo();
+	b.PrintBookInfo();
+	a = b;
+	a.PrintBookInfo();
+	*/
+	//Rack polka(10,1);
+	//polka.AddBook(Book(id[0], Name[0], PublishingHouse[0]));
+	//polka.AddBook(Book(id[1], Name[1], PublishingHouse[1]));
+	//polka.GetBooksInRack();
+	/*
 	while (true) {
 		system("cls");
 		cout << "1 - Показать книги на всех полках" << endl;
@@ -40,6 +54,9 @@ int main() {
 		}
 
 	}
+	*/
+
+
 	//Rack polka(6,2);
 	//polka.AddBook(2);
 	//polka.AddBook(5);
