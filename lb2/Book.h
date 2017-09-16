@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class Book{
 private:
@@ -74,13 +74,10 @@ void Book::SetPublishingHouse(char* str) {
 }
 
 void Book::PrintBookInfo() {
-	cout << "id" << setw(11) << ":" << _id << endl;
-	cout << "Íàçâàíèå" << setw(5) << ":";
-	cout << _Name << endl;
-	cout << "Àâòîð" << setw(8) << ":";
-	cout << _Author << endl;
-	cout << "Èçäàòåëüñòâî" << setw(1) << ":";
-	cout << _PublishingHouse << endl;
+	cout << "# id" << setw(11) << ":" << _id << endl;
+	cout << "# ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ" << setw(5) << ":" << _Name << endl;
+	cout << "# ÐÐ²Ñ‚Ð¾Ñ€" << setw(8) << ":" << _Author << endl;
+	cout << "# Ð˜Ð·Ð´Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾" << setw(1) << ":" << _PublishingHouse << endl;
 }
 
 Book::Book() {
@@ -90,13 +87,13 @@ Book::Book() {
 	//_PublishingHouse = '\0';
 	/*
 	char Tmp[100];
-	//cout << "Êîíñòðóêòîð êëàññà áåç ïàðàìåòðîâ" << endl;
-	cout << "Íîìåð êíèãè:";
+	//cout << "ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ»Ð°ÑÑÐ° Ð±ÐµÐ· Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²" << endl;
+	cout << "ÐÐ¾Ð¼ÐµÑ€ ÐºÐ½Ð¸Ð³Ð¸:";
 	cin >> _id;
-	cout << "Íàçâàíèå êíèãè:";
+	cout << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ½Ð¸Ð³Ð¸:";
 	cin >> Tmp;
 	/////_Name.push_back(Tmp);
-	cout << "Èçäàòåëüñòâî:";
+	cout << "Ð˜Ð·Ð´Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾:";
 	cin >> Tmp;
 	///_PublishingHouse.push_back(Tmp);
 	*/
