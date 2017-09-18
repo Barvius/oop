@@ -1,8 +1,5 @@
 ﻿#include "Book.h"
 
-#include <iostream>
-#include <iomanip>
-
 using namespace std;
 
 void Book::MemoryClear(char *&arr) {
@@ -63,17 +60,17 @@ void Book::PrintBookInfo() {
 Book::Book() {
 	cout << "конструктор без параметров" << endl;
 	char Tmp[100];
-	cout << "Номер книги" << setw(11) << ":";
+	cout << "Номер книги" << setw(4) << ":";
 	cin >> _id;
-	cout << "Название книги" << setw(5) << ":";
+	cout << "Название книги" << ":";
 	cin >> Tmp;
 	this->MemoryAlloc(_Name, strlen(Tmp) + 1);
 	strcpy(_Name, Tmp);
-	cout << "Автор" << setw(8) << ":";
+	cout << "Автор" << setw(10) << ":";
 	cin >> Tmp;
 	this->MemoryAlloc(_Author, strlen(Tmp) + 1);
 	strcpy(_Author, Tmp);
-	cout << "Издательство" << setw(1) << ":";
+	cout << "Издательство" << setw(3) << ":";
 	cin >> Tmp;
 	this->MemoryAlloc(_PublishingHouse, strlen(Tmp) + 1);
 	strcpy(_PublishingHouse, Tmp);

@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 #include <cstddef>
+#include <iostream>
+#include <iomanip>
 
 class Book {
 private:
