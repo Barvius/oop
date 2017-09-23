@@ -2,17 +2,12 @@
 
 using namespace std;
 
-void Book::MemoryClear(char *&arr) {
-	if (arr != nullptr) {
-		delete[] arr;
-	}
-}
-
-void Book::MemoryAlloc(char *&arr, int size) {
+void Book::_MemoryAlloc(char *&arr, int size, char* str) {
 	if (arr != nullptr) {
 		delete[] arr;
 	}
 	arr = new char[size];
+	strcpy(arr, str);
 }
 
 int Book::GetID() {
@@ -28,8 +23,7 @@ char* Book::GetName() {
 }
 
 void Book::SetName(char* str) {
-	MemoryAlloc(_Name, strlen(str) + 1);
-	strcpy(_Name, str);
+	_MemoryAlloc(_Name, strlen(str) + 1,str);
 }
 
 char* Book::GetAuthor() {
@@ -37,8 +31,7 @@ char* Book::GetAuthor() {
 }
 
 void Book::SetAuthor(char* str) {
-	MemoryAlloc(_Author, strlen(str) + 1);
-	strcpy(_Author, str);
+	_MemoryAlloc(_Author, strlen(str) + 1, str);
 }
 
 char* Book::GetPublishingHouse() {
@@ -46,8 +39,7 @@ char* Book::GetPublishingHouse() {
 }
 
 void Book::SetPublishingHouse(char* str) {
-	MemoryAlloc(_PublishingHouse, strlen(str) + 1);
-	strcpy(_PublishingHouse, str);
+	_MemoryAlloc(_PublishingHouse, strlen(str) + 1, str);
 }
 
 void Book::PrintBookInfo() {
@@ -64,52 +56,41 @@ Book::Book() {
 	cin >> _id;
 	cout << "Название книги" << ":";
 	cin >> Tmp;
-	this->MemoryAlloc(_Name, strlen(Tmp) + 1);
-	strcpy(_Name, Tmp);
+	SetName(Tmp);
 	cout << "Автор" << setw(10) << ":";
 	cin >> Tmp;
-	this->MemoryAlloc(_Author, strlen(Tmp) + 1);
-	strcpy(_Author, Tmp);
+	SetAuthor(Tmp);
 	cout << "Издательство" << setw(3) << ":";
 	cin >> Tmp;
-	this->MemoryAlloc(_PublishingHouse, strlen(Tmp) + 1);
-	strcpy(_PublishingHouse, Tmp);
+	SetPublishingHouse(Tmp);
 }
 
-Book::Book(int id_p, char *Name_p, char* Author_p, char *PublishingHouse_p) {
+Book::Book(int id_p, char *Name_p, char *Author_p, char *PublishingHouse_p) {
 	cout << "конструктор с параметром" << endl;
-	this->MemoryAlloc(_Name, strlen(Name_p) + 1);
-	this->MemoryAlloc(_Author, strlen(Author_p) + 1);
-	this->MemoryAlloc(_PublishingHouse, strlen(PublishingHouse_p) + 1);
-	_id = id_p;
-	strcpy(_Name, Name_p);
-	strcpy(_Author, Author_p);
-	strcpy(_PublishingHouse, PublishingHouse_p);
+	SetID(id_p);
+	SetName(Name_p);
+	SetAuthor(Author_p);
+	SetPublishingHouse(PublishingHouse_p);
 }
 
 Book::Book(Book &obj) {
 	cout << "конструктор копии" << endl;
-	this->MemoryAlloc(_Name, strlen(obj._Name) + 1);
-	this->MemoryAlloc(_Author, strlen(obj._Author) + 1);
-	this->MemoryAlloc(_PublishingHouse, strlen(obj._PublishingHouse) + 1);
-	_id = obj._id;
-	strcpy(_Name, obj._Name);
-	strcpy(_Author, obj._Author);
-	strcpy(_PublishingHouse, obj._PublishingHouse);
+	SetID(obj._id);
+	SetName(obj._Name);
+	SetAuthor(obj._Author);
+	SetPublishingHouse(obj._PublishingHouse);
 }
 
 Book &Book::operator = (Book &obj) {
-	this->MemoryAlloc(_Name, strlen(obj._Name) + 1);
-	this->MemoryAlloc(_Author, strlen(obj._Author) + 1);
-	this->MemoryAlloc(_PublishingHouse, strlen(obj._PublishingHouse) + 1);
-	_id = obj._id;
-	strcpy(_Name, obj._Name);
-	strcpy(_Author, obj._Author);
-	strcpy(_PublishingHouse, obj._PublishingHouse);
+	SetID(obj._id);
+	SetName(obj._Name);
+	SetAuthor(obj._Author);
+	SetPublishingHouse(obj._PublishingHouse);
 	return Book(*this);
 }
 
 Book::~Book() {
-	this->MemoryClear(_Name);
-	this->MemoryClear(_PublishingHouse);
+	delete[] _Name;
+	delete[] _Author;
+	delete[] _PublishingHouse;
 }
