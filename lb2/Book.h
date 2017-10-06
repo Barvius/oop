@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
+#include <iomanip>
 
 class Book {
 private:
@@ -8,8 +10,7 @@ private:
 	char* _Name = NULL;
 	char* _Author = NULL;
 	char* _PublishingHouse = NULL;
-	void MemoryAlloc(char *&, int);
-	void MemoryClear(char *&);
+	void _MemoryAlloc(char*&, int, char*);
 public:
 	int GetID();
 	void SetID(int);

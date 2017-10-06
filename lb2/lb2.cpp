@@ -1,32 +1,38 @@
-#include <iostream>
-#include <iomanip>
+п»ї#include <iostream>
+#include <windows.h>
+#include "Librarian.h"
 
 using namespace std;
 
-#include "Librarian.h"
-
 int main() {
-	setlocale(0, "rus");
-
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	
 	int N = 6;
 	int id[] = { 107,323,122,558,696,666,132 };
-	char *Name[] = { "Хильда и каменный лес","Придумай и нарисуй свой комикс","Каждому своё","Пропавший","Неудержимая. Моя жизнь","Магия крови","Книга моих историй" };
-	char *Author[] = { "Люк Пирсон","Луи Стоуэлл","Сергей Тармашев","Мэри Торджуссен","Мария Шарапова","Лине Кобербёль","Луи Стоуэлл" };
-	char *PublishingHouse[] = { "МИФ","МИФ","АСТ","АСТ","ЭКСМО","ЭКСМО","МИФ" };
+	char *Name[] = { "РҐРёР»СЊРґР° Рё РєР°РјРµРЅРЅС‹Р№ Р»РµСЃ","РџСЂРёРґСѓРјР°Р№ Рё РЅР°СЂРёСЃСѓР№ СЃРІРѕР№ РєРѕРјРёРєСЃ","РљР°Р¶РґРѕРјСѓ СЃРІРѕС‘","РџСЂРѕРїР°РІС€РёР№","РќРµСѓРґРµСЂР¶РёРјР°СЏ. РњРѕСЏ Р¶РёР·РЅСЊ","РњР°РіРёСЏ РєСЂРѕРІРё","РљРЅРёРіР° РјРѕРёС… РёСЃС‚РѕСЂРёР№" };
+	char *Author[] = { "Р›СЋРє РџРёСЂСЃРѕРЅ","Р›СѓРё РЎС‚РѕСѓСЌР»Р»","РЎРµСЂРіРµР№ РўР°СЂРјР°С€РµРІ","РњСЌСЂРё РўРѕСЂРґР¶СѓСЃСЃРµРЅ","РњР°СЂРёСЏ РЁР°СЂР°РїРѕРІР°","Р›РёРЅРµ РљРѕР±РµСЂР±С‘Р»СЊ","Р›СѓРё РЎС‚РѕСѓСЌР»Р»" };
+	char *PublishingHouse[] = { "РњРР¤","РњРР¤","РђРЎРў","РђРЎРў","Р­РљРЎРњРћ","Р­РљРЎРњРћ","РњРР¤" };
 
 	Librarian librarian(N, 7, id, Name, Author, PublishingHouse);
 
 	while (true) {
 		system("cls");
-		cout << "1 - Показать книги на всех полках" << endl;
-		cout << "2 - Поиск поназванию книги" << endl;
+		cout << "1 - РџРѕРєР°Р·Р°С‚СЊ РєРЅРёРіРё РЅР° РІСЃРµС… РїРѕР»РєР°С…" << endl;
+		cout << "2 - РџРѕРёСЃРє РїРѕ Р°РІС‚РѕСЂСѓ РєРЅРёРіРё" << endl;
 		switch (cin.get()) {
 		case '1':
-			librarian.GetAllBooksInRack();
+			system("cls");
+			librarian.GetAllBooksInRacks();
 			system("pause");
 			break;
 		case '2':
-			librarian.GetBookByAuthor("Луи Стоуэлл");
+			system("cls");
+			cout << "Р’РµРµРґРёС‚Рµ Р°РІС‚РѕСЂР°:";
+			cin.ignore();
+			char tmp[100];
+			cin.getline(tmp, 100);
+			librarian.GetBookByAuthor(tmp);
 			system("pause");
 			break;
 		default:

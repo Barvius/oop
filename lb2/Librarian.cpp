@@ -1,19 +1,16 @@
-#include "Librarian.h"
+п»ї#include "Librarian.h"
 
-#include <time.h>
-#include <iostream>
 using namespace std;
 
 void Librarian::GetBookByAuthor(char* str) {
-	cout << "поиск" << endl;
+	cout << str << endl;
 	for (int i = 0; i < _CountRacks; i++) {
 		_Racks[i].GetBookByAuthor(str);
 	}
 }
 
-void Librarian::GetAllBooksInRack() {
+void Librarian::GetAllBooksInRacks() {
 	for (int i = 0; i < _CountRacks; i++) {
-		//cout << "список книг на полке " << i + 1 << endl;
 		_Racks[i].GetAllBooksInRack();
 	}
 }
@@ -46,6 +43,5 @@ void Librarian::AddBookInRack(Book &obj, int RackNum) {
 }
 
 Librarian::~Librarian() {
-	cout << "sorter destr" << endl;
 	delete[] _Racks;
 }

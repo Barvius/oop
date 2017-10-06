@@ -1,21 +1,13 @@
-#include "Book.h"
-
-#include <iostream>
-#include <iomanip>
+ï»¿#include "Book.h"
 
 using namespace std;
 
-void Book::MemoryClear(char *&arr) {
-	if (arr != nullptr) {
-		delete[] arr;
-	}
-}
-
-void Book::MemoryAlloc(char *&arr, int size) {
+void Book::_MemoryAlloc(char *&arr, int size, char* str) {
 	if (arr != nullptr) {
 		delete[] arr;
 	}
 	arr = new char[size];
+	strcpy(arr, str);
 }
 
 int Book::GetID() {
@@ -31,8 +23,7 @@ char* Book::GetName() {
 }
 
 void Book::SetName(char* str) {
-	MemoryAlloc(_Name, strlen(str) + 1);
-	strcpy(_Name, str);
+	_MemoryAlloc(_Name, strlen(str) + 1,str);
 }
 
 char* Book::GetAuthor() {
@@ -40,8 +31,7 @@ char* Book::GetAuthor() {
 }
 
 void Book::SetAuthor(char* str) {
-	MemoryAlloc(_Author, strlen(str) + 1);
-	strcpy(_Author, str);
+	_MemoryAlloc(_Author, strlen(str) + 1, str);
 }
 
 char* Book::GetPublishingHouse() {
@@ -49,69 +39,60 @@ char* Book::GetPublishingHouse() {
 }
 
 void Book::SetPublishingHouse(char* str) {
-	MemoryAlloc(_PublishingHouse, strlen(str) + 1);
-	strcpy(_PublishingHouse, str);
+	_MemoryAlloc(_PublishingHouse, strlen(str) + 1, str);
 }
 
 void Book::PrintBookInfo() {
 	cout << "# id" << setw(11) << ":" << _id << endl;
-	cout << "# Íàçâàíèå" << setw(5) << ":" << _Name << endl;
-	cout << "# Àâòîð" << setw(8) << ":" << _Author << endl;
-	cout << "# Èçäàòåëüñòâî" << setw(1) << ":" << _PublishingHouse << endl;
+	cout << "# ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ" << setw(5) << ":" << _Name << endl;
+	cout << "# ÐÐ²Ñ‚Ð¾Ñ€" << setw(8) << ":" << _Author << endl;
+	cout << "# Ð˜Ð·Ð´Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾" << setw(1) << ":" << _PublishingHouse << endl;
 }
 
 Book::Book() {
 	/*
+	cout << "ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Ð±ÐµÐ· Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²" << endl;
 	char Tmp[100];
-	cout << "Íîìåð êíèãè" << setw(11) << ":";
+	cout << "ÐÐ¾Ð¼ÐµÑ€ ÐºÐ½Ð¸Ð³Ð¸" << setw(4) << ":";
 	cin >> _id;
-	cout << "Íàçâàíèå êíèãè" << setw(5) << ":";
+	cout << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ½Ð¸Ð³Ð¸" << ":";
 	cin >> Tmp;
-	this->MemoryAlloc(_Name, strlen(Tmp) + 1);
-	strcpy(_Name, Tmp);
-	cout << "Àâòîð" << setw(8) << ":";
+	SetName(Tmp);
+	cout << "ÐÐ²Ñ‚Ð¾Ñ€" << setw(10) << ":";
 	cin >> Tmp;
-	this->MemoryAlloc(_Author, strlen(Tmp) + 1);
-	strcpy(_Author, Tmp);
-	cout << "Èçäàòåëüñòâî" << setw(1) << ":";
+	SetAuthor(Tmp);
+	cout << "Ð˜Ð·Ð´Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾" << setw(3) << ":";
 	cin >> Tmp;
-	this->MemoryAlloc(_PublishingHouse, strlen(Tmp) + 1);
-	strcpy(_PublishingHouse, Tmp);
+	SetPublishingHouse(Tmp);
 	*/
 }
 
-Book::Book(int id_p, char *Name_p, char* Author_p, char *PublishingHouse_p) {
-	this->MemoryAlloc(_Name, strlen(Name_p) + 1);
-	this->MemoryAlloc(_Author, strlen(Author_p) + 1);
-	this->MemoryAlloc(_PublishingHouse, strlen(PublishingHouse_p) + 1);
-	_id = id_p;
-	strcpy(_Name, Name_p);
-	strcpy(_Author, Author_p);
-	strcpy(_PublishingHouse, PublishingHouse_p);
+Book::Book(int id_p, char *Name_p, char *Author_p, char *PublishingHouse_p) {
+	//cout << "ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð¼" << endl;
+	SetID(id_p);
+	SetName(Name_p);
+	SetAuthor(Author_p);
+	SetPublishingHouse(PublishingHouse_p);
 }
 
 Book::Book(Book &obj) {
-	this->MemoryAlloc(_Name, strlen(obj._Name) + 1);
-	this->MemoryAlloc(_Author, strlen(obj._Author) + 1);
-	this->MemoryAlloc(_PublishingHouse, strlen(obj._PublishingHouse) + 1);
-	_id = obj._id;
-	strcpy(_Name, obj._Name);
-	strcpy(_Author, obj._Author);
-	strcpy(_PublishingHouse, obj._PublishingHouse);
+	//cout << "ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ¾Ð¿Ð¸Ð¸" << endl;
+	SetID(obj._id);
+	SetName(obj._Name);
+	SetAuthor(obj._Author);
+	SetPublishingHouse(obj._PublishingHouse);
 }
 
 Book &Book::operator = (Book &obj) {
-	this->MemoryAlloc(_Name, strlen(obj._Name) + 1);
-	this->MemoryAlloc(_Author, strlen(obj._Author) + 1);
-	this->MemoryAlloc(_PublishingHouse, strlen(obj._PublishingHouse) + 1);
-	_id = obj._id;
-	strcpy(_Name, obj._Name);
-	strcpy(_Author, obj._Author);
-	strcpy(_PublishingHouse, obj._PublishingHouse);
+	SetID(obj._id);
+	SetName(obj._Name);
+	SetAuthor(obj._Author);
+	SetPublishingHouse(obj._PublishingHouse);
 	return Book(*this);
 }
 
 Book::~Book() {
-	this->MemoryClear(_Name);
-	this->MemoryClear(_PublishingHouse);
+	delete[] _Name;
+	delete[] _Author;
+	delete[] _PublishingHouse;
 }

@@ -1,8 +1,4 @@
-#include "Rack.h"
-#include "Book.h"
-
-#include <iostream>
-#include <iomanip>
+ï»¿#include "Rack.h"
 
 using namespace std;
 
@@ -31,8 +27,7 @@ Rack::~Rack() {
 bool Rack::AddBook(Book& obj) {
 	if (_CountBooks == _Size) {
 		return false;
-	}
-	else {
+	} else {
 		if (_Books == nullptr) {
 			_Books = new Book[1];
 			_Books[0] = obj;
@@ -57,7 +52,7 @@ bool Rack::AddBook(Book& obj) {
 }
 
 void Rack::GetAllBooksInRack() {
-	cout << "Íà ïîëêå " << _NumberRack << " (" << _CountBooks << " èç " << _Size << ")" << endl;
+	cout << "ÐÐ° Ð¿Ð¾Ð»ÐºÐµ " << _NumberRack << " (" << _CountBooks << " Ð¸Ð· " << _Size << ")" << endl;
 	for (size_t i = 0; i < _CountBooks; i++) {
 		_Books[i].PrintBookInfo();
 		cout << endl;
@@ -72,7 +67,7 @@ int Rack::GetNumberRack() {
 void Rack::GetBookByAuthor(char* str) {
 	for (size_t i = 0; i < _CountBooks; i++) {
 		if (!strcmp(_Books[i].GetAuthor(), str)) {
-			cout << "Êíèãà íà ïîëêå " << _NumberRack << endl;
+			cout << "ÐšÐ½Ð¸Ð³Ð° Ð½Ð° Ð¿Ð¾Ð»ÐºÐµ " << _NumberRack << endl;
 			_Books[i].PrintBookInfo();
 		}
 	}
