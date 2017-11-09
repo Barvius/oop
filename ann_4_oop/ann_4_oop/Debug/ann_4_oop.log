@@ -1,0 +1,6 @@
+﻿  lb_4.cpp
+d:\vs\ann_4_oop\ann_4_oop\lb_4.cpp(63): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\vs\ann_4_oop\ann_4_oop\lb_4.cpp(118): warning C4838: преобразование из "double" в "GLfloat" требует сужающего преобразования
+d:\vs\ann_4_oop\ann_4_oop\lb_4.cpp(118): warning C4244: инициализация: преобразование "double" в "GLfloat", возможна потеря данных
+  ann_4_oop.vcxproj -> D:\VS\ann_4_oop\Debug\ann_4_oop.exe
+  ann_4_oop.vcxproj -> D:\VS\ann_4_oop\Debug\ann_4_oop.pdb (Full PDB)
