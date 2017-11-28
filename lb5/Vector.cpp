@@ -11,11 +11,11 @@ Vector::Vector(){
 
 }
 
-Vector::Vector(Vector& obj) {
-	_N = obj.GetN();
+Vector::Vector(const Vector& obj) {
+	_N = obj._N;
 	_Arr = new float[_N];
-	for (size_t i = 0; i < obj.GetN(); i++) {
-		_Arr[i] = obj.GetE(i);
+	for (size_t i = 0; i < obj._N; i++) {
+		_Arr[i] = obj._Arr[i];
 	}
 }
 
@@ -47,11 +47,11 @@ void Vector::SetE(int i, float val) {
 	_Arr[i] = val;
 }
 
-Vector& Vector::operator = (Vector& obj) {
-	_N = obj.GetN();
+const Vector& Vector::operator = (const Vector& obj) {
+	_N = obj._N;
 	_Arr = new float[_N];
-	for (size_t i = 0; i < obj.GetN(); i++) {
-		_Arr[i] = obj.GetE(i);
+	for (size_t i = 0; i < obj._N; i++) {
+		_Arr[i] = obj._Arr[i];
 	}
 	return *this;
 }

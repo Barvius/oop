@@ -34,10 +34,10 @@ int ProizvGlDiag(Array& arr) {
 	return tmp;
 }
 
-float ProizvVect(Vector& vect) {
+float ProizvVect(const Vector& vect) {
 	int tmp = 1;
-	for (size_t i = 0; i < vect.GetN(); i++) {
-		tmp *= vect.GetE(i);
+	for (size_t i = 0; i < vect._N; i++) {
+		tmp *= vect._Arr[i];
 	}
 	return tmp;
 }

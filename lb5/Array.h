@@ -8,7 +8,7 @@ class Array {
 	friend int MaxInRow(Array&,int);
 	friend float SrAr(const Array&, int);
 	friend int ProizvGlDiag(Array&);
-	friend float ProizvVect(Vector&);
+	friend float ProizvVect(const Vector&);
 private:
 	int** _Arr = NULL;
 	int _N;
@@ -22,11 +22,11 @@ public:
 	void Print();
 	Array();
 	Array(int,int);
-	Array(Array&);
+	Array(const Array&);
 	~Array();
 	const Array& operator = (const Array&);
 	const Array& operator >> (const Array&);
 	const Vector operator / (const Array&);
-	float operator - (Vector&);
+	const float operator - (const Vector&);
 };
 

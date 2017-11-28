@@ -33,16 +33,16 @@ Array::Array() {
 
 }
 
-Array::Array(Array& obj) {
-	_N = obj.GetN();
-	_M = obj.GetM();
+Array::Array(const Array& obj) {
+	_N = obj._N;
+	_M = obj._M;
 	_Arr = new int*[_N];
 	for (size_t i = 0; i < _N; i++) {
 		_Arr[i] = new int[_M];
 	}
-	for (size_t i = 0; i < obj.GetN(); i++) {
-		for (size_t j = 0; j < obj.GetM(); j++) {
-			_Arr[i][j] = obj.GetE(i,j);
+	for (size_t i = 0; i < obj._N; i++) {
+		for (size_t j = 0; j < obj._M; j++) {
+			_Arr[i][j] = obj._Arr[i][j];
 		}
 	}
 }
@@ -57,24 +57,13 @@ Array::~Array(){
 }
 
 const Array& Array::operator >> (const Array& obj) {
-	Array tmp;
-	_N = obj._N;
-	_M = obj._M;
-	_Arr = new int*[_N];
-	for (size_t i = 0; i < _N; i++) {
-		_Arr[i] = new int[_M];
-	}
-	for (size_t i = 0; i < obj._N; i++) {
-		for (size_t j = 0; j < obj._M; j++) {
-			_Arr[i][j] = obj._Arr[i][j];
-		}
-	}
+	Array *tmp = new Array(obj);
 	for (size_t i = 0; i < obj._N; i++) {
 		int a = MaxInRow(*this, i);
-		int b = MaxInRow(tmp, i);
-		tmp.SetE(i,b, this->GetE(i,a));
+		int b = MaxInRow(*tmp, i);
+		tmp->SetE(i,b, this->GetE(i,a));
 	}
-	return obj;
+	return *tmp;
 }
 
 const Array& Array::operator = (const Array& obj) {
@@ -101,11 +90,11 @@ const Vector Array::operator / (const Array& obj) {
 	for (size_t i = 0; i < N; i++) {
 		tmp.SetE(i, SrAr(*this, i) / SrAr(obj, i));
 	}
-	tmp.Print();
+	//tmp.Print();
 	return tmp;
 }
 
-float Array::operator - (Vector& obj) {
+const float Array::operator - (const Vector& obj) {
 	return fabs(ProizvGlDiag(*this))-fabs(ProizvVect(obj));
 }
 
